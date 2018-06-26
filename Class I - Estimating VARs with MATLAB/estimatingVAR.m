@@ -38,9 +38,14 @@ n=2; % # of variables
 p=4; % 4 lags
 c=1; % including constant
 
-[pi_hat,Y,X,Y_initial,Yfit,err]=VAR(finaldata,p,c); % VAR estimation
+[pi_hat,Y,X,Y_initial,Yfit,err]=VAR(finaldata,p,c); % VAR estimation, c - constant
+
+pi_hat % the first row corresponds to the constant
 
 BigA=[pi_hat(2:end,:)'; eye(n*p-n) zeros(n*p-n,n)]; % BigA companion form, npxnp matrix
+% start from 2 to exclude the constant, mistake --> error
+
+
 
 %% Wold representation impulse responses:
 
@@ -51,7 +56,7 @@ for j=1:20
     C(:,:,j)=BigC(1:n,1:n); % Impulse response functions of the Wold representation
 end
 
-C_wold=reshape(permute(C,[3 2 1]),20,n*n,[]);
+C_wold=reshape(permute(C,[3 2 1]),20,n*n,[]);  % "will make our life easier"
 
 % Bootstrap:
 
@@ -73,7 +78,7 @@ for k=1:n
     subplot(n,n,j+n*k-n)
     fill([0:hor-1 fliplr(0:hor-1)]' ,[HighC(:,j+n*k-n); flipud(LowC(:,j+n*k-n))],...
         colorBNDS,'EdgeColor','None'); hold on;
-    plot(0:hor-1,C_wold(:,j+n*k-n),'LineWidth',3.5,'Color','k'); hold on;
+    plot(0:hor-1,C_wold(:,j+n*k-n),'LineWidth',3.5,'Color','k'); hold on;  % the confidence bands
     line(get(gca,'Xlim'),[0 0],'Color',[0 0 0],'LineStyle','-'); hold off;
     title(VARnames{k})
     legend({'68% confidence bands','IRF'},'FontSize',12)

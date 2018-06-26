@@ -15,7 +15,7 @@ function [Y,X,Y_initial]=SUR(data,p,c)
 Y=(data(p+1:end,:));
 
 if c==1
-    X =[ones(length(lagmatrix(data,1:p)),1) lagmatrix(data,1:p)]; 
+    X =[ones(length(lagmatrix(data,1:p)),1) lagmatrix(data,1:p)];  %lagmatrix gives a matrix of lagged observations
 else X=lagmatrix(data,1:p);
 end 
     

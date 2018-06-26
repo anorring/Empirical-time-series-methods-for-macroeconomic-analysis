@@ -3,7 +3,7 @@ function [HighC,LowC]=bootstrapVAR(data,hor,c,iter,conf,p,n)
 % Function to perform bootstrap method
 % Author: Nicolo' Maffei Faccioli
 
-% Step 1: 
+% Step 1: estimate and store
 
 [pi_hat,~,~,Y_initial,~,err]=VAR(data,p,c);
 
