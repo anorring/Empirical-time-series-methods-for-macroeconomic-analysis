@@ -21,7 +21,8 @@ end
     
 X(1:p,:)=[];   
 
-% Discarded observations:
+% Discarded observations: because the zero observations, check the
+% lagmatrix(finaldata,1:4) (or is this related to the first class?)
 
 Y_initial=data(1:p,:);
 

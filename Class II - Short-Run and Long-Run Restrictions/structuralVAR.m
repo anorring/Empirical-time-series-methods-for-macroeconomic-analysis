@@ -65,7 +65,7 @@ end
 
 % Cholesky:
 
-T=length(finaldata)-n*p-n; % -p lags for n variables and -n constants
+T=length(Y)-n*p-n; % -p lags for n variables and -n constants
 omega=(err'*err)./T; %estimate of omega
 S=chol(omega,'lower'); %cholesky factorization, lower triangular matrix
 

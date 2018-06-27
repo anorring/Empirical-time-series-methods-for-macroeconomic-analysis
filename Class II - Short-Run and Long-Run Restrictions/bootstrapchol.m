@@ -3,6 +3,8 @@ function [HighD,LowD]=bootstrapchol(data,hor,c,iter,conf,p,n)
 % Function to perform bootstrap method
 % Author: Nicolo' Maffei Faccioli
 
+% typos: re-download
+
 % Step 1: 
 
 [pi_hat,~,~,Y_initial,~,err]=VAR(data,p,c);
